@@ -1,4 +1,4 @@
-class SimpleCaptcha {
+class ReCaptcha {
     constructor(canvasId, inputId, buttonId) {
         this.canvas = document.getElementById(canvasId);
         this.input = document.getElementById(inputId);
@@ -7,14 +7,14 @@ class SimpleCaptcha {
 
         this.code = "";
 
-        this.generateCaptcha();
+        this.generate();
 
         this.button.addEventListener("click", () => {
-            this.validateCaptcha();
+            this.verify();
         });
     }
 
-    generateCaptcha() {
+    generate() {
         const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
         this.code = "";
 
@@ -22,19 +22,19 @@ class SimpleCaptcha {
             this.code += chars[Math.floor(Math.random() * chars.length)];
         }
 
-        this.drawCaptcha();
+        this.draw();
     }
 
-    drawCaptcha() {
+    draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // background noise
+        // background
         this.ctx.fillStyle = "#f2f2f2";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         // text
         this.ctx.font = "30px Arial";
-        this.ctx.fillStyle = "#333";
+        this.ctx.fillStyle = "#222";
 
         for (let i = 0; i < this.code.length; i++) {
             const x = 20 + i * 25;
@@ -57,12 +57,12 @@ class SimpleCaptcha {
         }
     }
 
-    validateCaptcha() {
+    verify() {
         if (this.input.value.toUpperCase() === this.code) {
-            alert("CAPTCHA Passed!");
+            alert("reCAPTCHA Passed!");
         } else {
             alert("Wrong CAPTCHA!");
-            this.generateCaptcha();
+            this.generate();
         }
     }
 }
