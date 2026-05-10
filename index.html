@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rechap CAPTCHA Demo</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>🛡️ rechap CAPTCHA</h2>
+
+    <canvas id="captchaCanvas" width="200" height="60"></canvas>
+
+    <input type="text" id="captchaInput" placeholder="Enter CAPTCHA">
+
+    <button id="checkBtn">Verify</button>
+
+</div>
+
+<!-- Use local file -->
+<script src="recaptcha.min.js"></script>
+
+<!-- OR use CDN (GitHub jsDelivr)
+<script src="https://cdn.jsdelivr.net/gh/attendance1978-wq/rechap@main/recaptcha.min.js"></script>
+-->
+
+<script>
+    const captcha = new ReCaptcha(
+        "captchaCanvas",
+        "captchaInput",
+        "checkBtn"
+    );
+</script>
+
+</body>
+</html>
